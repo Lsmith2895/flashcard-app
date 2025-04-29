@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "6ad77bc2-c997-46ac-9798-b2a74d65ddad",
+		"name": "FlashCard API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20209212"
+	},
+	"item": [
+		{
+			"name": "Current Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET /current returns 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Card has front and back\", function () {",
+							"  var json = pm.response.json();",
+							"  pm.expect(json).to.have.property(\"front\");",
+							"  pm.expect(json).to.have.property(\"back\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/flashcard/current",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"flashcard",
+						"current"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flip Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST /flip returns 204 No Content\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/flashcard/flip",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"flashcard",
+						"flip"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Flash Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST /submit returns 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/flashcard/submit?correct=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"flashcard",
+						"submit"
+					],
+					"query": [
+						{
+							"key": "correct",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Go To Next Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST /next returns 204\", function () {",
+							"  pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/flashcard/next",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"flashcard",
+						"next"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check If Deck Is Empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"GET /empty returns a boolean\", function () {",
+							"  pm.response.to.have.status(200);",
+							"  var json = pm.response.json();",
+							"  pm.expect(typeof json).to.eql(\"boolean\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5164/flashcard/empty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5164",
+					"path": [
+						"flashcard",
+						"empty"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

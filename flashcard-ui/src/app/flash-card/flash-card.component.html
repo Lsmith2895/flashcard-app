@@ -1,0 +1,19 @@
+<div *ngIf="isLoading">
+    <p>Loading...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && currentCard && !isDeckEmpty" class="card-container">
+    <div class="flashcard" (click)="flipCard()">
+      <p>{{ currentCard.isFlipped ? currentCard.back : currentCard.front }}</p>
+    </div>
+  
+    <div class="actions">
+      <button (click)="submitAnswer(true)">Correct</button>
+      <button (click)="submitAnswer(false)">Incorrect</button>
+    </div>
+  </div>
+  
+  <div *ngIf="isDeckEmpty">
+    <p>🎉 You've completed all flashcards!</p>
+  </div>
+  

@@ -16,7 +16,7 @@ export interface FlashCard {
 export class FlashDeckService {
 
   // TODO: Update this based on your own server URL
-  private apiUrl = 'https://localhost:5164/flashcard';
+  private apiUrl = 'http://localhost:5164/flashcard';
 
   constructor(private http: HttpClient) { }
 

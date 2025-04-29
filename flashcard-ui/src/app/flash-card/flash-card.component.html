@@ -1,24 +1,26 @@
-<div *ngIf="isLoading">
-    <p>Loading...</p>
+<div *ngIf="isLoading" class="status-message">
+    <p>Loading flashcards...</p>
   </div>
   
   <div *ngIf="!isLoading && currentCard && !isDeckEmpty" class="card-container">
     <div class="flashcard" [class.flipped]="currentCard.isFlipped" (click)="flipCard()">
-      <div class="front">
-        <p>{{ currentCard.front }}</p>
-      </div>
-      <div class="back">
-        <p>{{ currentCard.back }}</p>
+      <div class="flashcard-inner">
+        <div class="card-face front">
+          <p>{{ currentCard.front }}</p>
+        </div>
+        <div class="card-face back">
+          <p>{{ currentCard.back }}</p>
+        </div>
       </div>
     </div>
   
     <div class="actions">
-      <button (click)="submitAnswer(true)">Correct</button>
-      <button (click)="submitAnswer(false)">Incorrect</button>
+      <button class="action-button correct" (click)="submitAnswer(true)">Correct</button>
+      <button class="action-button incorrect" (click)="submitAnswer(false)">Incorrect</button>
     </div>
   </div>
   
-  <div *ngIf="isDeckEmpty">
+  <div *ngIf="isDeckEmpty" class="status-message">
     <p>🎉 You've completed all flashcards!</p>
   </div>
   

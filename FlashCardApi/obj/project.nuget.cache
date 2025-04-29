@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0TxQhKhCQ7A=",
+  "success": true,
+  "projectFilePath": "/Users/logansmith/flashcard-app/FlashCardApi/FlashCardApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/logansmith/.nuget/packages/microsoft.aspnetcore.openapi/9.0.4/microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
+    "/Users/logansmith/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

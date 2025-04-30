@@ -1,2 +1,35 @@
 <h2>Edit Flashcards</h2>
-<p>Here you'll be able to add, update, and delete cards.</p>
+
+<section>
+  <h3>Add New Card</h3>
+  <form (submit)="createCard(); $event.preventDefault()">
+    <input [(ngModel)]="newCard.front" name="front" placeholder="Front (Question)" required />
+    <input [(ngModel)]="newCard.back" name="back" placeholder="Back (Answer)" required />
+    <button type="submit">Add</button>
+  </form>
+</section>
+
+<hr />
+
+<section *ngIf="cards.length > 0">
+  <h3>Existing Cards</h3>
+  <ul>
+    <li *ngFor="let card of cards">
+      <div *ngIf="editingCard?.id !== card.id">
+        <strong>Q:</strong> {{ card.front }} |
+        <strong>A:</strong> {{ card.back }}
+        <button (click)="startEdit(card)">Edit</button>
+        <button (click)="deleteCard(card.id)">Delete</button>
+      </div>
+
+      <div *ngIf="editingCard?.id === card.id">
+        <input [(ngModel)]="editFront" placeholder="Front" />
+        <input [(ngModel)]="editBack" placeholder="Back" />
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<p *ngIf="cards.length === 0 && !isLoading">No flashcards yet.</p>

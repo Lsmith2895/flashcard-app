@@ -49,4 +49,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FlashCardDbContext>();
+    db.Database.EnsureCreated();
+    DbSeeder.Seed(db);
+}
+
+
 app.Run();

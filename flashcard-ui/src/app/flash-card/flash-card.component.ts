@@ -11,21 +11,24 @@ import { CommonModule } from '@angular/common';
 })
 export class FlashCardComponent implements OnInit {
 
-  currentCard: FlashCard | null = null;
+  cards: FlashCard[] = [];
+  currentIndex: number = 0;
   isLoading: boolean = true;
   isDeckEmpty: boolean = false;
 
   constructor(private flashDeckService: FlashDeckService) {}
 
   ngOnInit() {
-    this.loadCurrentCard();
+    this.loadDeck();
   }
 
-  loadCurrentCard() {
+  loadDeck() {
     this.isLoading = true;
-    this.flashDeckService.getCurrentCard().subscribe({
-      next: (card) => {
-        this.currentCard = card;
+    this.flashDeckService.getAll().subscribe({
+      next: (cards) => {
+        this.cards = cards.map(card => ({ ...card, isFlipped: false }));
+        this.currentIndex = 0;
+        this.isDeckEmpty = cards.length === 0;
         this.isLoading = false;
       },
       error: () => {
@@ -35,23 +38,35 @@ export class FlashCardComponent implements OnInit {
     });
   }
 
+  get currentCard(): FlashCard | null {
+    if (this.cards.length === 0 || this.currentIndex >= this.cards.length) {
+      return null;
+    }
+    return this.cards[this.currentIndex];
+  }
+
   flipCard() {
-    this.flashDeckService.flipCurrentCard().subscribe(() => {
-      if (this.currentCard) {
-        this.currentCard.isFlipped = !this.currentCard.isFlipped;
-      }
-    });
+    if (this.currentCard) {
+      this.currentCard.isFlipped = !this.currentCard.isFlipped;
+    }
   }
 
   submitAnswer(correct: boolean) {
-    this.flashDeckService.submitAnswer(correct).subscribe(() => {
-      this.moveToNextCard();
-    });
+    if (!this.currentCard) return;
+
+    if (!correct) {
+      // Add to the end to retry
+      const retryCard = { ...this.currentCard, isFlipped: false };
+      this.cards.push(retryCard);
+    }
+
+    this.moveToNextCard();
   }
 
   moveToNextCard() {
-    this.flashDeckService.moveToNextCard().subscribe(() => {
-      this.loadCurrentCard();
-    });
+    this.currentIndex++;
+    if (this.currentIndex >= this.cards.length) {
+      this.isDeckEmpty = true;
+    }
   }
 }

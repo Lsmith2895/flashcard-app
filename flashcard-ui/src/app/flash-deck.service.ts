@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Define what a FlashCard looks like
 export interface FlashCard {
   id: string;
   front: string;
@@ -13,30 +12,29 @@ export interface FlashCard {
 @Injectable({
   providedIn: 'root'
 })
+//TODO: update based on your URL i.e. 5001, 5164, etc
 export class FlashDeckService {
+  private apiUrl = 'http://localhost:5164/api/flashcards';
 
-  // TODO: Update this based on your own server URL
-  private apiUrl = 'http://localhost:5164/flashcard';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getCurrentCard(): Observable<FlashCard> {
-    return this.http.get<FlashCard>(`${this.apiUrl}/current`);
+  getAll(): Observable<FlashCard[]> {
+    return this.http.get<FlashCard[]>(this.apiUrl);
   }
 
-  flipCurrentCard(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/flip`, {});
+  get(id: string): Observable<FlashCard> {
+    return this.http.get<FlashCard>(`${this.apiUrl}/${id}`);
   }
 
-  submitAnswer(correct: boolean): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/submit?correct=${correct}`, {});
+  create(card: FlashCard): Observable<FlashCard> {
+    return this.http.post<FlashCard>(this.apiUrl, card);
   }
 
-  moveToNextCard(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/next`, {});
+  update(card: FlashCard): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${card.id}`, card);
   }
 
-  isDeckEmpty(): Observable<boolean> {
-    return this.http.get<boolean>(`${this.apiUrl}/empty`);
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

@@ -29,8 +29,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ProdPolicy", policy =>
     {
-        //TODO: update the url once frontend is deployed
-        policy.WithOrigins("https://your-static-site.azurestaticapps.net")
+        policy.WithOrigins("https://lively-plant-0d0125a1e.6.azurestaticapps.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });

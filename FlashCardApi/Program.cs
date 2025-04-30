@@ -27,11 +27,19 @@ builder.Services.AddSingleton<IFlashDeckService, FlashDeckService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("ProdPolicy", policy =>
+    {
+        //TODO: update the url once frontend is deployed
+        policy.WithOrigins("https://your-static-site.azurestaticapps.net")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+
+    options.AddPolicy("DevPolicy", policy =>
     {
         policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -43,11 +51,22 @@ var app = builder.Build();
 app.UseCors();
 app.MapControllers();
 
+// CORS — switch based on environment
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseCors("DevPolicy");
 }
+else
+{
+    app.UseCors("ProdPolicy");
+}
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flashcard API v1");
+    c.RoutePrefix = "swagger";
+});
 
 using (var scope = app.Services.CreateScope())
 {

@@ -61,6 +61,7 @@ else
 }
 
 app.UseSwagger();
+app.UseStaticFiles();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flashcard API v1");

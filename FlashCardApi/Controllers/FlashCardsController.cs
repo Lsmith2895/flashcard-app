@@ -29,14 +29,14 @@ public class FlashCardsController : ControllerBase
         return card == null ? NotFound() : Ok(card);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<FlashCard>> Create([FromBody] FlashCard flashCard)
-    {
-        _context.FlashCards.Add(flashCard);
-        await _context.SaveChangesAsync();
+[HttpPost]
+public async Task<ActionResult<FlashCard>> Create([FromBody] FlashCard card)
+{
+    _context.FlashCards.Add(card);
+    await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(Get), new { id = flashCard.Id }, flashCard);
-    }
+    return CreatedAtAction(nameof(Get), new { id = card.Id }, card);
+}
 
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, FlashCard updated)

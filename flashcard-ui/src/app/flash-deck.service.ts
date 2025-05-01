@@ -28,7 +28,7 @@ export class FlashDeckService {
   }
 
   create(card: Omit<FlashCard, 'id'>): Observable<FlashCard> {
-    return this.http.post<FlashCard>(`${this.apiUrl}/api/flashcards`, card);
+    return this.http.post<FlashCard>(this.apiUrl, card);
   }  
 
   update(card: FlashCard): Observable<void> {

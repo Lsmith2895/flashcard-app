@@ -32,7 +32,7 @@ export class EditCardsComponent implements OnInit {
 
   createCard() {
     this.flashDeckService.create(this.newCard).subscribe(() => {
-      this.newCard = { id: '', front: '', back: '', isFlipped: false };
+      this.newCard = { front: '', back: '', isFlipped: false };
       this.loadCards();
     });
   }

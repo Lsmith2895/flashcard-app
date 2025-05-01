@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "🛀 Cleaning .NET project..."
+dotnet clean
 
 echo "🔧 Publishing .NET project..."
 dotnet publish -c Release

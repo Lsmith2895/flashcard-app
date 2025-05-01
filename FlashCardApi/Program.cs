@@ -47,9 +47,6 @@ builder.Services.AddDbContext<FlashCardDbContext>(options =>
 
 var app = builder.Build();
 
-app.UseCors();
-app.MapControllers();
-
 // CORS — switch based on environment
 if (app.Environment.IsDevelopment())
 {
@@ -75,5 +72,6 @@ using (var scope = app.Services.CreateScope())
     DbSeeder.Seed(db);
 }
 
+app.MapControllers();
 
 app.Run();

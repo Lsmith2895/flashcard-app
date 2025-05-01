@@ -6,7 +6,10 @@ echo "🔧 Publishing .NET project..."
 dotnet publish -c Release
 
 echo "📦 Zipping published files..."
-zip -r flashcard-api.zip ./bin/Release/net9.0/publish > /dev/null
+cd ./bin/Release/net9.0/publish
+zip -r flashcard-api.zip . > /dev/null
+mv flashcard-api.zip ../../../../../flashcard-api.zip
+cd -
 
 echo "🚀 Deploying to Azure..."
 az webapp deployment source config-zip \

@@ -31,11 +31,15 @@ export class EditCardsComponent implements OnInit {
   }
 
   createCard() {
-    this.flashDeckService.create(this.newCard).subscribe(() => {
+    const { front, back, isFlipped } = this.newCard;
+    const newCard = { front, back, isFlipped }; // ensures no accidental `id` field
+  
+    this.flashDeckService.create(newCard).subscribe(() => {
       this.newCard = { front: '', back: '', isFlipped: false };
       this.loadCards();
     });
   }
+  
 
   startEdit(card: FlashCard) {
     this.editingCard = { ...card };

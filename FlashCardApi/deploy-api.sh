@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "🛀 Cleaning .NET project..."
 dotnet clean
 
@@ -7,9 +8,8 @@ dotnet publish -c Release
 
 echo "📦 Zipping published files..."
 cd ./bin/Release/net9.0/publish
-zip -r flashcard-api.zip . > /dev/null
-mv flashcard-api.zip ../../../../../flashcard-api.zip
-cd -
+zip -r ../../../../../flashcard-api.zip ./*
+cd ../../../../../
 
 echo "🚀 Deploying to Azure..."
 az webapp deployment source config-zip \

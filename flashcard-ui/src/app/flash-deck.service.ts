@@ -14,7 +14,8 @@ export interface FlashCard {
 })
 //TODO: update based on your URL i.e. 5001, 5164, etc
 export class FlashDeckService {
-  private apiUrl = 'https://lively-plant-0d0125a1e.6.azurestaticapps.net';
+
+  private apiUrl = 'https://flashcard-api-demo.azurewebsites.net/api/flashcards';
 
   constructor(private http: HttpClient) {}
 

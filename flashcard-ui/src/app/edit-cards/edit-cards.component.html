@@ -19,7 +19,7 @@
         <strong>Q:</strong> {{ card.front }} |
         <strong>A:</strong> {{ card.back }}
         <button (click)="startEdit(card)">Edit</button>
-        <button (click)="deleteCard(card.id)">Delete</button>
+        <button (click)="deleteCard(card.id!)">Delete</button>
       </div>
 
       <div *ngIf="editingCard?.id === card.id">

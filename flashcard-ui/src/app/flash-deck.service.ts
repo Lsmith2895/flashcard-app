@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface FlashCard {
-  id: string;
+  id?: string;
   front: string;
   back: string;
   isFlipped: boolean;
@@ -27,9 +27,9 @@ export class FlashDeckService {
     return this.http.get<FlashCard>(`${this.apiUrl}/${id}`);
   }
 
-  create(card: FlashCard): Observable<FlashCard> {
-    return this.http.post<FlashCard>(this.apiUrl, card);
-  }
+  create(card: Omit<FlashCard, 'id'>): Observable<FlashCard> {
+    return this.http.post<FlashCard>(`${this.apiUrl}/api/flashcards`, card);
+  }  
 
   update(card: FlashCard): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${card.id}`, card);

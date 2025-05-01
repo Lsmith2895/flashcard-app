@@ -47,9 +47,6 @@ builder.Services.AddDbContext<FlashCardDbContext>(options =>
 
 var app = builder.Build();
 
-app.UseCors();
-app.MapControllers();
-
 // CORS — switch based on environment
 if (app.Environment.IsDevelopment())
 {
@@ -68,12 +65,21 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
-using (var scope = app.Services.CreateScope())
+try
 {
+    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<FlashCardDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
     db.Database.EnsureCreated();
-    DbSeeder.Seed(db);
+    DbSeeder.Seed(db, logger);
+}
+catch (Exception ex)
+{
+    app.Logger.LogError(ex, "❌ Application failed to seed or connect to the database.");
 }
 
+
+app.MapControllers();
 
 app.Run();

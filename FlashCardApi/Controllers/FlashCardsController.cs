@@ -30,7 +30,7 @@ public class FlashCardsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<FlashCard>> Create(FlashCard flashCard)
+    public async Task<ActionResult<FlashCard>> Create([FromBody] FlashCard flashCard)
     {
         _context.FlashCards.Add(flashCard);
         await _context.SaveChangesAsync();

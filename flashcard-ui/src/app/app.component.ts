@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {AnimatedBackgroundComponent} from "../app/animated-background/animated-background.component"
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, AnimatedBackgroundComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

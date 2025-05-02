@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
   --primary-color: #1A202C;
   --accent-color: #3182CE;
   --background-color: black;
   --text-color: #2D3748;
-  --font-family: 'Inter', sans-serif;
+  --font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 body {
@@ -66,3 +68,5 @@ body {
     }
   }
 }
+
+

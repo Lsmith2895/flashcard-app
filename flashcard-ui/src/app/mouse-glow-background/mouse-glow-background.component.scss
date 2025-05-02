@@ -1,0 +1,48 @@
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .pattern-bkg {
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 21, 15, 0);
+    background-image: 
+      url(https://assets-global.website-files.com/652ab70d6af926707a88d2cd/652b800bb62af154c40919e2_streamside-bkg-pattern.svg),
+      linear-gradient(to right,#00150f, rgba(138, 147, 145, 0) 30%, rgba(47, 64, 60, 0) 70%, #00150f),
+      linear-gradient(to top,#00150f, rgba(240, 241, 241, .06) 35%, rgba(255, 255, 255, 0) 81%, #00150f);
+    background-position: 0 0, 0 0, 0 0;
+    background-size: 12px 12px, auto, auto;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+  }
+  
+  .bkg-glow {
+    z-index: 1;
+    width: 600px;
+    height: 600px;
+    filter: blur(20px);
+    background-color: rgba(255, 107, 107, 0);
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 107, 107, 0.9),
+      rgba(255, 107, 107, 0.6) 4%,
+      rgba(255, 107, 107, 0.35) 20%,
+      rgba(255, 107, 107, 0.15) 52%,
+      rgba(255, 255, 255, 0)
+    );
+    border-radius: 10rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  

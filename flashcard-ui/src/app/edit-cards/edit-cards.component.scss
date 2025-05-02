@@ -1,0 +1,95 @@
+.component {
+    max-width: 800px;
+    margin: auto;
+    padding: 1.5rem;
+    font-family: system-ui, sans-serif;
+  
+    h2, h3 {
+      margin-bottom: 1rem;
+    }
+  
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+  
+      input {
+        flex: 1 1 45%;
+        padding: 0.5rem;
+      }
+  
+      button {
+        padding: 0.5rem 1rem;
+      }
+    }
+  
+    .card-list {
+      margin-top: 2rem;
+    }
+  
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+  
+    .flashcard {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  
+      .card-side {
+        label {
+          font-size: 0.8rem;
+          font-weight: bold;
+          color: #555;
+        }
+  
+        p {
+          margin: 0.25rem 0 0.75rem;
+          font-size: 1rem;
+          word-wrap: break-word;
+        }
+      }
+  
+      .card-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+  
+        button {
+          background-color: #007acc;
+          color: white;
+          border: none;
+          padding: 0.4rem 0.75rem;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background 0.2s ease;
+  
+          &:hover {
+            background-color: #005fa3;
+          }
+  
+          &:last-child {
+            background-color: #e74c3c;
+  
+            &:hover {
+              background-color: #c0392b;
+            }
+          }
+        }
+      }
+  
+      .card-edit input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+      }
+    }
+  }
+  

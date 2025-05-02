@@ -1,35 +1,47 @@
-<h2>Edit Flashcards</h2>
+<div class="component">
+  <h2>Edit Flashcards</h2>
 
-<section>
-  <h3>Add New Card</h3>
-  <form (submit)="createCard(); $event.preventDefault()">
-    <input [(ngModel)]="newCard.front" name="front" placeholder="Front (Question)" required />
-    <input [(ngModel)]="newCard.back" name="back" placeholder="Back (Answer)" required />
-    <button type="submit">Add</button>
-  </form>
-</section>
+  <section>
+    <h3>Add New Card</h3>
+    <form (submit)="createCard(); $event.preventDefault()">
+      <input [(ngModel)]="newCard.front" name="front" placeholder="Front (Question)" required />
+      <input [(ngModel)]="newCard.back" name="back" placeholder="Back (Answer)" required />
+      <button type="submit">Add</button>
+    </form>
+  </section>
 
-<hr />
+  <hr />
 
-<section *ngIf="cards.length > 0">
-  <h3>Existing Cards</h3>
-  <ul>
-    <li *ngFor="let card of cards">
-      <div *ngIf="editingCard?.id !== card.id">
-        <strong>Q:</strong> {{ card.front }} |
-        <strong>A:</strong> {{ card.back }}
-        <button (click)="startEdit(card)">Edit</button>
-        <button (click)="deleteCard(card.id!)">Delete</button>
+  <section *ngIf="cards.length > 0" class="card-list">
+    <h3>Existing Cards</h3>
+    <div class="card-container">
+      <div *ngFor="let card of cards" class="flashcard">
+        <div *ngIf="editingCard?.id !== card.id" class="card-content">
+          <div class="card-side">
+            <label>Front</label>
+            <p>{{ card.front }}</p>
+          </div>
+          <div class="card-side">
+            <label>Back</label>
+            <p>{{ card.back }}</p>
+          </div>
+          <div class="card-actions">
+            <button (click)="startEdit(card)">Edit</button>
+            <button (click)="deleteCard(card.id!)">Delete</button>
+          </div>
+        </div>
+  
+        <div *ngIf="editingCard?.id === card.id" class="card-edit">
+          <input [(ngModel)]="editFront" placeholder="Front" />
+          <input [(ngModel)]="editBack" placeholder="Back" />
+          <div class="card-actions">
+            <button (click)="saveEdit()">Save</button>
+            <button (click)="cancelEdit()">Cancel</button>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div *ngIf="editingCard?.id === card.id">
-        <input [(ngModel)]="editFront" placeholder="Front" />
-        <input [(ngModel)]="editBack" placeholder="Back" />
-        <button (click)="saveEdit()">Save</button>
-        <button (click)="cancelEdit()">Cancel</button>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<p *ngIf="cards.length === 0 && !isLoading">No flashcards yet.</p>
+  <p *ngIf="cards.length === 0 && !isLoading">No flashcards yet.</p>
+</div>

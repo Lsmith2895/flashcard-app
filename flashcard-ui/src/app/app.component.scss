@@ -34,6 +34,9 @@ body {
     color: var(--primary-color);
     text-decoration: none;
   }
+  .navbar-brand {
+    display: flex;
+  }
 
   .navbar-menu {
     display: flex;
@@ -69,4 +72,8 @@ body {
   }
 }
 
-
+  
+.logo-image {
+  width: 30px;
+  height: 30px;
+}

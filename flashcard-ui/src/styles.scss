@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* styles.scss */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* black background */
+    color: #ffffff;           /* white text */
+    font-family: 'Inter', sans-serif;
+  }
+  
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  

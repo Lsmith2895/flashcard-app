@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FlashCardComponent } from './flash-card/flash-card.component'
-
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule], 
+  imports: [RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'flashcard-ui';
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

@@ -1,9 +1,12 @@
-<nav class="navbar">
-  <a routerLink="/" routerLinkActive="active">Home</a>
-  <a routerLink="/study" routerLinkActive="active">Study</a>
-  <a routerLink="/edit" routerLinkActive="active">Edit Cards</a>
-</nav>
+<header class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" class="logo">FlashDeck</a>
+  </div>
+  <nav class="navbar-menu">
+    <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
+    <a routerLink="/study" routerLinkActive="active" class="nav-link">Study</a>
+    <a routerLink="/edit" routerLinkActive="active" class="nav-link">Edit Cards</a>
+  </nav>
+</header>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+<router-outlet></router-outlet>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {AnimatedBackgroundComponent} from "../app/animated-background/animated-background.component"
+import { MouseGlowBackgroundComponent } from "./mouse-glow-background/mouse-glow-background.component"
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, AnimatedBackgroundComponent],
+  imports: [RouterModule, MouseGlowBackgroundComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

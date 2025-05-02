@@ -1,0 +1,5 @@
+<div class="background">
+    <div *ngFor="let plus of plusSymbols" class="plus" [style.left.px]="plus.x" [style.top.px]="plus.y">+</div>
+  </div>
+<div class="cursor-glow" [style.left.px]="mouseX" [style.top.px]="mouseY"></div>
+  

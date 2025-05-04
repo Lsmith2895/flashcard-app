@@ -1,6 +1,4 @@
 <div class="component">
-  <h2>Edit Flashcards</h2>
-
   <section>
     <h3>Add New Card</h3>
     <form (submit)="createCard(); $event.preventDefault()">
@@ -18,11 +16,11 @@
       <div *ngFor="let card of cards" class="flashcard">
         <div *ngIf="editingCard?.id !== card.id" class="card-content">
           <div class="card-side">
-            <label>Front</label>
+            <label>Front:</label>
             <p>{{ card.front }}</p>
           </div>
           <div class="card-side">
-            <label>Back</label>
+            <label>Back:</label>
             <p>{{ card.back }}</p>
           </div>
           <div class="card-actions">

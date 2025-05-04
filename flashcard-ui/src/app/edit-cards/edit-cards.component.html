@@ -1,6 +1,4 @@
 <div class="component">
-  <h2>Edit Flashcards</h2>
-
   <section>
     <h3>Add New Card</h3>
     <form (submit)="createCard(); $event.preventDefault()">
@@ -16,27 +14,36 @@
     <h3>Existing Cards</h3>
     <div class="card-container">
       <div *ngFor="let card of cards" class="flashcard">
-        <div *ngIf="editingCard?.id !== card.id" class="card-content">
+        <div class="card-content">
           <div class="card-side">
-            <label>Front</label>
-            <p>{{ card.front }}</p>
+            <label>Front:</label>
+            <ng-container *ngIf="editingCard?.id === card.id; else frontView">
+              <input [(ngModel)]="editFront" placeholder="Front" name="editFront" />
+            </ng-container>
+            <ng-template #frontView>
+              <p>{{ card.front }}</p>
+            </ng-template>
           </div>
+
           <div class="card-side">
-            <label>Back</label>
-            <p>{{ card.back }}</p>
+            <label>Back:</label>
+            <ng-container *ngIf="editingCard?.id === card.id; else backView">
+              <input [(ngModel)]="editBack" placeholder="Back" name="editBack" />
+            </ng-container>
+            <ng-template #backView>
+              <p>{{ card.back }}</p>
+            </ng-template>
           </div>
+
           <div class="card-actions">
-            <button (click)="startEdit(card)">Edit</button>
-            <button (click)="deleteCard(card.id!)">Delete</button>
-          </div>
-        </div>
-  
-        <div *ngIf="editingCard?.id === card.id" class="card-edit">
-          <input [(ngModel)]="editFront" placeholder="Front" />
-          <input [(ngModel)]="editBack" placeholder="Back" />
-          <div class="card-actions">
-            <button (click)="saveEdit()">Save</button>
-            <button (click)="cancelEdit()">Cancel</button>
+            <ng-container *ngIf="editingCard?.id === card.id; else defaultActions">
+              <button (click)="saveEdit()">Save</button>
+              <button (click)="cancelEdit()">Cancel</button>
+            </ng-container>
+            <ng-template #defaultActions>
+              <button (click)="startEdit(card)">Edit</button>
+              <button (click)="deleteCard(card.id!)">Delete</button>
+            </ng-template>
           </div>
         </div>
       </div>

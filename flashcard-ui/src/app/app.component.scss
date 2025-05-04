@@ -38,9 +38,43 @@ body {
     display: flex;
   }
 
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+
+    @media (max-width: 576px) {
+      display: block;
+    }
+  }
+
   .navbar-menu {
     display: flex;
     gap: 1.5rem;
+
+    @media (max-width: 576px) {
+      position: absolute;
+      top: 100%;
+      background-color: black;
+      flex-direction: column;
+      width: 76%;
+      padding: 1rem 2rem;
+      display: none;
+
+      &.open {
+        display: flex;
+      }
+    }
+
+    display: flex;
+    gap: 1.5rem;
+  
+    @media (max-width: 576px) {
+      display: none;
+    }
 
     .nav-link {
       position: relative;

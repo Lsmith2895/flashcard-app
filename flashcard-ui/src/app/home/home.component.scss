@@ -24,10 +24,8 @@ h2 {
 .container {
     display: flex;
     justify-content: center;   
-    height: 60vh;
-    margin: 5%;
+    margin: 5% 10%;
     flex-direction: column;
-    width: 40%;
 }
 
 .logo-container {
@@ -35,12 +33,29 @@ h2 {
 }
 
 .logo {
-    height: 5rem;
+    height: 70px;
     border-radius: 20px;
     padding-right: 10px;
+
+    @media (max-width: 768px) {
+        display: none;
+      }
+    
+      @media (max-width: 576px) {
+        display: none;
+      }
 }
 
 .title {
     font-size: 70px;
-    font-weight:500
-}
+    font-weight: 500;
+  
+    @media (max-width: 768px) {
+        display: none;
+      }
+    
+      @media (max-width: 576px) {
+        display: none;
+      }
+  }
+  

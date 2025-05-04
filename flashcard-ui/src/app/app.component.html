@@ -3,10 +3,16 @@
   <div class="navbar-brand">
     <img class="logo-image" src="assets/logo-without-title.png"><a routerLink="/" class="logo">FlashDeck</a>
   </div>
-  <nav class="navbar-menu">
-    <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
-    <a routerLink="/study" routerLinkActive="active" class="nav-link">Study</a>
-    <a routerLink="/edit" routerLinkActive="active" class="nav-link">Edit Cards</a>
+  <!-- Hamburger icon for mobile -->
+  <button class="hamburger" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <!-- Navbar menu for desktop -->
+  <nav class="navbar-menu" [class.open]="isMenuOpen">
+    <a routerLink="/" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">Home</a>
+    <a routerLink="/study" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">Study</a>
+    <a routerLink="/edit" routerLinkActive="active" class="nav-link" (click)="toggleMenu()">Edit Cards</a>
   </nav>
 </header>
 <router-outlet></router-outlet>
